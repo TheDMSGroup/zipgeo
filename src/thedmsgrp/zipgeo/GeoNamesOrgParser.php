@@ -82,7 +82,7 @@ class GeoNamesOrgParser
             throw new Exception('You must provide a database location');
         }
 
-        $dbPath = dirname(__DIR__) . join(DIRECTORY_SEPARATOR, self::$dbLocation);
+        $dbPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, self::$dbLocation);
 
         if (!file_exists($dbPath)) {
             throw new Exception('The provided database path is wrong');
