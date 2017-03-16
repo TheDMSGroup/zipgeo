@@ -1,6 +1,11 @@
 {
     "name": "thedmsgrp/zipgeo",
     "description": "This is a DMS group public repo to convert zip code into geographical locations",
+	"autoload": {
+        "psr-4": {
+            "TheDMSGrp\\ZipGeo\\": "src/"
+        }
+    },
     "type": "library",
     "authors": [
         {
@@ -8,6 +13,5 @@
             "email": "jruiz@thedmsgrp.com"
         }
     ],
-    "require": {},
-    "psr-4": { "TheDMSGrp\\ZipGeo\\": "src/" }
+    "license": "MIT"
 }
