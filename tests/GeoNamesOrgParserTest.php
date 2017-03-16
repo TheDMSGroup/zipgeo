@@ -61,4 +61,40 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result['state-code'], 'FL');
         $this->assertEquals($result['county'], 'PINELLAS');
     }
+
+    /**
+     *
+     */
+    public function testGetInfoByZipcode()
+    {
+        $zipcode = 33761;
+
+        $result = GeoNamesOrgParser::getGeoInfoByZipcode($zipcode);
+
+        $this->assertNotEmpty($result);
+
+        $this->assertArrayHasKey('country', $result);
+        $this->assertArrayHasKey('zipcode', $result);
+        $this->assertArrayHasKey('city', $result);
+        $this->assertArrayHasKey('state-name', $result);
+        $this->assertArrayHasKey('state-code', $result);
+        $this->assertArrayHasKey('county', $result);
+
+        $this->assertEquals($result['country'], 'US');
+        $this->assertEquals($result['zipcode'], '33761');
+        $this->assertEquals($result['city'], 'CLEARWATER');
+        $this->assertEquals($result['state-name'], 'FLORIDA');
+        $this->assertEquals($result['state-code'], 'FL');
+        $this->assertEquals($result['county'], 'PINELLAS');
+    }
+
+    /**
+     * @expectedException Error
+     */
+    public function testExceptions()
+    {
+        $this->expectException(Error::class);
+
+        GeoNamesOrgParser::getGeoInfoByZipcode(null);
+    }
 }

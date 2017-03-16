@@ -11,7 +11,7 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="ZipGeo test suit">
+        <testsuite name="ZipGeo test suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

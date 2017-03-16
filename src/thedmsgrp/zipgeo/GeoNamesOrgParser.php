@@ -81,7 +81,7 @@ class GeoNamesOrgParser
         if (!empty($zipcode)) {
             return self::getResultFromDB(['zipcode' => $zipcode]);
         } else {
-            throw Exception('You must provide a zipcode');
+            throw new Exception('You must provide a zipcode');
         }
     }
 
