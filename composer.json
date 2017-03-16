@@ -1,0 +1,8 @@
+{
+    "name": "thedmsgrp/zipgeo",
+    "autoload": {
+        "psr-4": {
+            "TheDMSGrp\\": "src/thedmsgrp"
+        }
+    }
+}
