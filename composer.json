@@ -8,5 +8,6 @@
             "email": "jruiz@thedmsgrp.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "psr-4": { "TheDMSGrp\\ZipGeo\\": "src/" }
 }
