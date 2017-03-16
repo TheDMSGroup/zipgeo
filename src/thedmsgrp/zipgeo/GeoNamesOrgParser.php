@@ -82,15 +82,10 @@ class GeoNamesOrgParser
             throw new Exception('You must provide a database location');
         }
 
-        $dbPath = __DIR__ . self::$dbLocation;
+        $dbPath = dirname(__DIR__) . self::$dbLocation;
 
         if (!file_exists($dbPath)) {
-            throw new Exception(
-                sprintf(
-                    'The provided database path "%" is wrong',
-                    $dbPath
-                )
-            );
+            throw new Exception('The provided database path is wrong');
         }
 
         $requiredKeys = array();
@@ -99,30 +94,20 @@ class GeoNamesOrgParser
             $requiredKeys[$key] = $key;
         }
 
-        $handle = fopen($dbPath, "r");
+        foreach (self::getRows($dbPath) as $currentLine) {
+            if (!empty($currentLine)) {
+                $currentLocation = self::parseLine($currentLine[0]);
 
-        $found = 0;
+                $found = 0;
 
-        if ($handle) {
-            while (($currentLine = fgets($handle)) !== false) {
-                if (!empty($currentLine)) {
-                    $currentLocation = self::parseLine($currentLine);
+                if(count(array_intersect_key($requiredKeys, $currentLocation)) === count($requiredKeys)) {
+                    $found = count(array_intersect($searchParams, $currentLocation)) === count($searchParams);
+                }
 
-                    $found = 0;
-
-                    if(count(array_intersect_key($requiredKeys, $currentLocation)) === count($requiredKeys)) {
-                        $found = count(array_intersect($searchParams, $currentLocation)) === count($searchParams);
-                    }
-
-                    if ($found) {
-                        break;
-                    }
+                if ($found) {
+                    break;
                 }
             }
-
-            fclose($handle);
-        } else {
-            // error opening the file.
         }
 
         // So we don't return the last record of the database
@@ -131,5 +116,25 @@ class GeoNamesOrgParser
         }
 
         return $currentLocation;
+    }
+
+    /**
+     * @param $dbPath
+     * @return array
+     * @throws Exception
+     */
+    private static function getRows($dbPath)
+    {
+        $handle = fopen($dbPath, 'r');
+
+        if (! $handle) {
+            throw new Exception(); // error opening the file.
+        }
+
+        while (! feof($handle)) {
+            yield fgetcsv($handle);
+        }
+
+        fclose($handle);
     }
 }
