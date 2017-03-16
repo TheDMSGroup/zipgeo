@@ -10,7 +10,7 @@ class GeoNamesOrgParser
     /**
      * @var string
      */
-    public static $dbLocation = 'db/US.txt';
+    public static $dbLocation = __DIR__ . '/db/US.txt';
 
     /**
      * @param $line
