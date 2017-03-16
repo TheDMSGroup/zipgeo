@@ -89,32 +89,32 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Error
+     * @expectedException Exception
      */
     public function testExceptionWhenNoZipcode()
     {
-        $this->expectException(Error::class);
+        $this->expectException(Exception::class);
 
         GeoNamesOrgParser::getGeoInfoByZipcode(null);
     }
 
     /**
-     * @expectedException Error
+     * @expectedException Exception
      */
     public function testExceptionWhenNoDbLocation()
     {
-        $this->expectException(Error::class);
+        $this->expectException(Exception::class);
 
         GeoNamesOrgParser::$dbLocation = null;
         GeoNamesOrgParser::getGeoInfoByZipcode(32258);
     }
 
     /**
-     * @expectedException Error
+     * @expectedException Exception
      */
     public function testExceptionWhenWrongDbLocation()
     {
-        $this->expectException(Error::class);
+        $this->expectException(Exception::class);
 
         GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-doesnt-exists';
         GeoNamesOrgParser::getGeoInfoByZipcode(32258);
