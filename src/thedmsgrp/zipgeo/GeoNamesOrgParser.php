@@ -72,6 +72,20 @@ class GeoNamesOrgParser
     }
 
     /**
+     * @param $zipcode
+     * @return array
+     * @throws Exception
+     */
+    public static function getGeoInfoByZipcode($zipcode)
+    {
+        if (!empty($zipcode)) {
+            return self::getResultFromDB(['zipcode' => $zipcode]);
+        } else {
+            throw Exception('You must provide a zipcode');
+        }
+    }
+
+    /**
      * @param $searchParams
      * @return array
      * @throws Exception
