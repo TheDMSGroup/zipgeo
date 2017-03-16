@@ -1,5 +1,7 @@
 <?php namespace TheDMSGrp\ZipGeo;
 
+use Exception;
+
 /**
  * Class GeoNamesOrgParser
  */
