@@ -21,7 +21,7 @@ matrix:
     - php: nightly
 
 before_script:
-    - composer install --prefer-dist
+    - composer install --prefer-dist --ignore-platform-reqs
 
 git:
   depth: 5
