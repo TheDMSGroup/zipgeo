@@ -91,10 +91,32 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException Error
      */
-    public function testExceptions()
+    public function testExceptionWhenNoZipcode()
     {
         $this->expectException(Error::class);
 
         GeoNamesOrgParser::getGeoInfoByZipcode(null);
+    }
+
+    /**
+     * @expectedException Error
+     */
+    public function testExceptionWhenNoDbLocation()
+    {
+        $this->expectException(Error::class);
+
+        GeoNamesOrgParser::$dbLocation = null;
+        GeoNamesOrgParser::getGeoInfoByZipcode(32258);
+    }
+
+    /**
+     * @expectedException Error
+     */
+    public function testExceptionWhenWrongDbLocation()
+    {
+        $this->expectException(Error::class);
+
+        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-doesnt-exists';
+        GeoNamesOrgParser::getGeoInfoByZipcode(32258);
     }
 }
