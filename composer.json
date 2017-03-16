@@ -1,7 +1,6 @@
 {
     "name": "thedmsgrp/zipgeo",
     "description": "This is a DMS group public repo to convert zip code into geographical locations",
-    "version": "0.0.1",
     "autoload": {
         "psr-0": {
             "TheDMSGrp\\ZipGeo\\": "src/"
