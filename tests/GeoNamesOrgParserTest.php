@@ -87,36 +87,4 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result['state-code'], 'FL');
         $this->assertEquals($result['county'], 'PINELLAS');
     }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testExceptionWhenNoZipcode()
-    {
-        $this->expectException(Exception::class);
-
-        GeoNamesOrgParser::getGeoInfoByZipcode(null);
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testExceptionWhenNoDbLocation()
-    {
-        $this->expectException(Exception::class);
-
-        GeoNamesOrgParser::$dbLocation = null;
-        GeoNamesOrgParser::getGeoInfoByZipcode(32258);
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testExceptionWhenWrongDbLocation()
-    {
-        $this->expectException(Exception::class);
-
-        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-doesnt-exists';
-        GeoNamesOrgParser::getGeoInfoByZipcode(32258);
-    }
 }
