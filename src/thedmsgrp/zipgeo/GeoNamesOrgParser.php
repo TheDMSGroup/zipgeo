@@ -10,7 +10,7 @@ class GeoNamesOrgParser
     /**
      * @var string
      */
-    public static $dbLocation = __DIR__ . '/db/US.txt';
+    public static $dbLocation = '/db/US.txt';
 
     /**
      * @param $line
@@ -85,7 +85,12 @@ class GeoNamesOrgParser
         $dbPath = __DIR__ . self::$dbLocation;
 
         if (!file_exists($dbPath)) {
-            throw new Exception('The provided database path is wrong');
+            throw new Exception(
+                sprintf(
+                    'The provided database path "%" is wrong',
+                    $dbPath
+                )
+            );
         }
 
         $requiredKeys = array();
