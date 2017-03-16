@@ -1,5 +1,5 @@
 {
-    "name": "thedmsgrp/zipgeo",
+    "name": "TheDMSGroup/ZipGeo",
     "autoload": {
         "psr-4": {
             "TheDMSGrp\\": "src/thedmsgrp"
