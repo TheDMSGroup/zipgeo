@@ -12,10 +12,37 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
     /**
      *
      */
-    public function testGetInfoByCityAndState()
+    public function testGetInfoByCityAndStateCode()
     {
         $city = "Clearwater";
         $state = "FL";
+
+        $result = GeoNamesOrgParser::getGeoInfoByCityAndStateName($city, $state);
+
+        $this->assertNotEmpty($result);
+
+        $this->assertArrayHasKey('country', $result);
+        $this->assertArrayHasKey('zipcode', $result);
+        $this->assertArrayHasKey('city', $result);
+        $this->assertArrayHasKey('state-name', $result);
+        $this->assertArrayHasKey('state-code', $result);
+        $this->assertArrayHasKey('county', $result);
+
+        $this->assertEquals($result['country'], 'US');
+        $this->assertEquals($result['zipcode'], '33755');
+        $this->assertEquals($result['city'], 'CLEARWATER');
+        $this->assertEquals($result['state-name'], 'FLORIDA');
+        $this->assertEquals($result['state-code'], 'FL');
+        $this->assertEquals($result['county'], 'PINELLAS');
+    }
+
+    /**
+     *
+     */
+    public function testGetInfoByCityAndStateName()
+    {
+        $city = "Clearwater";
+        $state = "Florida";
 
         $result = GeoNamesOrgParser::getGeoInfoByCityAndStateName($city, $state);
 
@@ -116,7 +143,7 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(Error::class);
 
-        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-should-not-exist';
+        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-doesnt-exists';
         GeoNamesOrgParser::getGeoInfoByZipcode(32258);
     }
 }
