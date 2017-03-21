@@ -116,7 +116,7 @@ class GeoNamesOrgParserTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(Error::class);
 
-        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-doesnt-exists';
+        GeoNamesOrgParser::$dbLocation = 'some-wrong-path-that-should-not-exist';
         GeoNamesOrgParser::getGeoInfoByZipcode(32258);
     }
 }
