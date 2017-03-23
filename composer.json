@@ -2,9 +2,12 @@
     "name": "thedmsgrp/zipgeo",
     "description": "This is a DMS group public repo to convert zip code into geographical locations",
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "TheDMSGrp\\ZipGeo\\": "src/"
         }
+    },
+    "require": {
+        "php": ">5.5.9"
     },
     "type": "library",
     "authors": [
