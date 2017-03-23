@@ -6,6 +6,9 @@
             "TheDMSGrp\\ZipGeo\\": "src/"
         }
     },
+    "require": {
+        "php": ">5.5.9"
+    },
     "type": "library",
     "authors": [
         {
